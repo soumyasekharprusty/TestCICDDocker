@@ -30,6 +30,6 @@ jobs:
           login-server: ${{ secrets.AZURE_URL }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
-          push: true
-          tags: ${{ secrets.IMAGE_TAG }}
-          file: Dockerfile
+      - run: |
+            docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
+            docker push ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
