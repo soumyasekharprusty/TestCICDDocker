@@ -1,8 +1,9 @@
 name: Build and Push to ACR
 on:
   push:
-    branches:
-      - 'main'
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 jobs:
   build:
     name: 'Build and Push to ACR'
