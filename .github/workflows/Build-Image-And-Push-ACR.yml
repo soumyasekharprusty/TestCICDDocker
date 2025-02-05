@@ -52,3 +52,6 @@ jobs:
          name: testcicdcontainer
          location: 'east us'
          #ports: '8080,80'
+         ports:
+          -80
+          -8080
