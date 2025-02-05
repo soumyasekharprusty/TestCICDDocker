@@ -33,4 +33,4 @@ jobs:
       - run: |
             #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
             docker build . --file Dockerfile --tag my-image-name:${{ github.sha }}
-            docker push ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
+            docker push ${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }}
