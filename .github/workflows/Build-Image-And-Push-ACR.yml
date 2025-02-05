@@ -4,6 +4,8 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+env:
+  DATE: Sys.time
 jobs:
   build:
     name: 'Build and Push to ACR'
@@ -12,25 +14,29 @@ jobs:
     defaults:
       run:
         shell: bash
-
+        
     steps:
+        
+
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Docker Login
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.AZURE_URL }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Output print
+        run: echo "Date value is ${{DATE}}"
+      #- name: Docker Login
+      #  uses: azure/docker-login@v1
+      #  with:
+      #    login-server: ${{ secrets.AZURE_URL }}
+      #    username: ${{ secrets.ACR_USERNAME }}
+      #    password: ${{ secrets.ACR_PASSWORD }}
         
-      - name: Build and Push to ACR
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.AZURE_URL }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-      - run: |
-            #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
-            docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:$(date +%s)
-            docker push ${{ secrets.AZURE_URL }}/my-image-name:$(date +%s)
+      #- name: Build and Push to ACR
+      #  uses: azure/docker-login@v1
+      #  with:
+      #    login-server: ${{ secrets.AZURE_URL }}
+      #    username: ${{ secrets.ACR_USERNAME }}
+      #    password: ${{ secrets.ACR_PASSWORD }}
+      #- run: |
+      #      #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
+      #      docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:$(date)
+      #      docker push ${{ secrets.AZURE_URL }}/my-image-name:$(date +%s)
