@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
         
       - name: Build and Push to ACR
-      - run: |
+        run: |
             #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
             docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
             docker push ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
