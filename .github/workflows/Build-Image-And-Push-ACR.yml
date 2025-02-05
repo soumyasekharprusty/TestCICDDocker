@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  DATE: ${{ (date +'%Y-%m-%d) }}
+  DATE: ${ (date +'%Y-%m-%d) }
 jobs:
   build:
     name: 'Build and Push to ACR'
