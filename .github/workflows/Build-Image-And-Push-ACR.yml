@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Output print
-        run: echo "Date value is $DATE"
+        run: echo "Date value from variable is $DATE --- Date value from direct is $(date +'%Y-%m-%d')"
       #- name: Docker Login
       #  uses: azure/docker-login@v1
       #  with:
