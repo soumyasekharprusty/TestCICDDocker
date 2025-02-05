@@ -43,12 +43,11 @@ jobs:
       - name: Deploy to Azure Container Instances
         uses: 'azure/aci-deploy@v1'
         with:
-         resource-group: Container
-         dns-name-label: url-for-container
+         resource-group: ${{ secrets.RESOURCE_GROUP }}
+         dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
          image: ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
-         cpu: 1   #Optional
-         memory: 0.1   #Optional
+         registry-login-server: ${{ secrets.AZURE_URL }}
          registry-username: ${{ secrets.ACR_USERNAME }}
          registry-password: ${{ secrets.ACR_PASSWORD }}
-         name: contoso-container
+         name: aci-sampleapp
          location: 'east us'
