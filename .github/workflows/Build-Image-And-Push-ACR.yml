@@ -49,5 +49,5 @@ jobs:
          registry-login-server: ${{ secrets.AZURE_URL }}
          registry-username: ${{ secrets.ACR_USERNAME }}
          registry-password: ${{ secrets.ACR_PASSWORD }}
-         name: aci-sampleapp
+         name: testcicdcontainer
          location: 'east us'
