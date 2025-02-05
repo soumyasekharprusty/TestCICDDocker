@@ -31,5 +31,6 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
       - run: |
-            docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
+            #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
+            docker build . --file Dockerfile --tag my-image-name:${{ github.sha }}
             docker push ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
