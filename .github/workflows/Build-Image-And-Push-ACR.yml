@@ -51,3 +51,4 @@ jobs:
          registry-password: ${{ secrets.ACR_PASSWORD }}
          name: testcicdcontainer
          location: 'east us'
+         entrypoint: '8080'
