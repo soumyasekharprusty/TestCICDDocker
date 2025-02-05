@@ -17,9 +17,13 @@ jobs:
         
     steps:
         
-
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       #- name: Output print
       #  run: echo "Date value from variable is $DATE --- Date value from direct is $(date +'%Y-%m-%d')"
@@ -35,3 +39,16 @@ jobs:
             #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
             docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
             docker push ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
+
+      - name: Deploy to Azure Container Instances
+        uses: 'azure/aci-deploy@v1'
+        with:
+         resource-group: Container
+         dns-name-label: url-for-container
+         image: ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
+         cpu: 1   #Optional
+         memory: 0.1   #Optional
+         registry-username: ${{ secrets.ACR_USERNAME }}
+         registry-password: ${{ secrets.ACR_PASSWORD }}
+         name: contoso-container
+         location: 'east us'
