@@ -23,20 +23,20 @@ jobs:
 
       - name: Output print
         run: echo "Date value from variable is $DATE --- Date value from direct is $(date +'%Y-%m-%d')"
-      #- name: Docker Login
-      #  uses: azure/docker-login@v1
-      #  with:
-      #    login-server: ${{ secrets.AZURE_URL }}
-      #    username: ${{ secrets.ACR_USERNAME }}
-      #    password: ${{ secrets.ACR_PASSWORD }}
+      - name: Docker Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.AZURE_URL }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
         
-      #- name: Build and Push to ACR
-      #  uses: azure/docker-login@v1
-      #  with:
-      #    login-server: ${{ secrets.AZURE_URL }}
-      #    username: ${{ secrets.ACR_USERNAME }}
-      #    password: ${{ secrets.ACR_PASSWORD }}
-      #- run: |
-      #      #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
-      #      docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:$(date)
-      #      docker push ${{ secrets.AZURE_URL }}/my-image-name:$(date +%s)
+      - name: Build and Push to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.AZURE_URL }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - run: |
+            #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
+            docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
+            docker push ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
