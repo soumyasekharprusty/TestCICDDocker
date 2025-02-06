@@ -1,0 +1,25 @@
+name: Build and Push to ACR
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+env:
+  name : Date_Env
+  value: $(date +'%Y-%m-%d')
+jobs:
+  build:
+    name: 'Build and Push to ACR'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        
+    steps:
+        
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Output print
+        run: echo "Date value from variable is $Date_Env --- Date value from direct is $(date +'%Y-%m-%d')"
