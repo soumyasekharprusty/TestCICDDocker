@@ -45,7 +45,7 @@ jobs:
         with:
          resource-group: ${{ secrets.RESOURCE_GROUP }}
          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-         image: ${{ secrets.AZURE_URL }}/my-image-name:2025-02-05
+         image: ${{ secrets.AZURE_URL }}/my-image-name:$(date +'%Y-%m-%d')
          registry-login-server: ${{ secrets.AZURE_URL }}
          registry-username: ${{ secrets.ACR_USERNAME }}
          registry-password: ${{ secrets.ACR_PASSWORD }}
