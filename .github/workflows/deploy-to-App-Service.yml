@@ -39,7 +39,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'soumyatestcicd'
-          images: 'docker push ${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }} '
+          images: '${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }}'
 
       - name: Azure logout
         run: |
