@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
 env:
   name : Date_Env
-  value: $(date +'%Y-%m-%d')
+  value: ${ (date +'%Y-%m-%d') }
 jobs:
   build:
     name: 'Build and Push to ACR'
