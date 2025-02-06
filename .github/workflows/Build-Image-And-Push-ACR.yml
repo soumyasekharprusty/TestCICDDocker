@@ -4,8 +4,6 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-env:
-  name : ${ (date +'%Y-%m-%d') }
 jobs:
   build:
     name: 'Build and Push to ACR'
@@ -24,9 +22,7 @@ jobs:
         uses: azure/login@v1
         with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      #- name: Output print
-      #  run: echo "Date value from variable is $DATE --- Date value from direct is $(date +'%Y-%m-%d')"
+            
       - name: Docker Login
         uses: azure/docker-login@v1
         with:
@@ -36,7 +32,6 @@ jobs:
         
       - name: Build and Push to ACR
         run: |
-            #docker build . -t ${{ secrets.AZURE_URL }}/sampleapp:${{ github.sha }}
             docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }} 
             docker push ${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }} 
 
@@ -51,4 +46,4 @@ jobs:
          registry-password: ${{ secrets.ACR_PASSWORD }}
          name: testcicdcontainer
          location: 'east us'
-         ports: '5000'
+         ports: '8080'
