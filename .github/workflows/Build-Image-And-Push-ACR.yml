@@ -35,6 +35,14 @@ jobs:
             docker build . --file Dockerfile --tag ${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }} 
             docker push ${{ secrets.AZURE_URL }}/my-image-name:${{ github.sha }} 
 
+  deploy:
+    name: Pull from ARC and deploy to ACI
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+    steps:
       - name: Deploy to Azure Container Instances
         uses: 'azure/aci-deploy@v1'
         with:
