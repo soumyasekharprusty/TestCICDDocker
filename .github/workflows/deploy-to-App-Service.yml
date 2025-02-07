@@ -1,9 +1,10 @@
 name: Build and deploy to App Service
 on:
-  push:
-    branches: [ "master" ]
+  # push:
+    # branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    types: [closed]
 jobs:
   build-deploy-App:
     name: 'Build and Push to ACR'
