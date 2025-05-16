@@ -1,4 +1,4 @@
-name: hello-world
+name: Replace Text Test
 on: workflow_dispatch
 jobs:
   my-job:
